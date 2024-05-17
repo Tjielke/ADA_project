@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="/bar_order" method="POST">
+    <h1>Bar Order</h1>
+    
+    <label for="orderID">Order ID:</label>
+    <input type="text" id="orderID" name="orderID" placeholder="Enter Order ID"> <br>
+
+    <label for="DateTime">Date and Time:</label>
+    <input type="text" id="DateTime" name="DateTime" readonly> <br>
+
+    <label for="seller">Seller ID:</label>
+    <input type="text" id="seller" name="seller" placeholder="Enter Seller ID"> <br>
+
+    <label for="buyer">Buyer ID:</label>
+    <input type="text" id="buyer" name="buyer" placeholder="Enter Buyer ID"> <br>
+    
+    <p><input type='submit' value='Submit Order'/></p>
+</form>
+
+<script>
+    window.onload = function() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var day = ("0" + now.getDate()).slice(-2);
+        var hours = ("0" + now.getHours()).slice(-2);
+        var minutes = ("0" + now.getMinutes()).slice(-2);
+        var seconds = ("0" + now.getSeconds()).slice(-2);
+        var formattedDateTime = year + month + day + hours + minutes + seconds;
+        document.getElementById('DateTime').value = formattedDateTime;
+    }
+</script>
+
+</body>
+</html>
