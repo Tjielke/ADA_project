@@ -1,3 +1,0 @@
-Flask
-Flask-JWT-Extended
-requests
