@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  keycloak:
+    image: keycloak/keycloak:24.0.2
+    container_name: keycloak
+    user: root
+    volumes:
+      - ./keycloak_data2/:/opt/keycloak/data/
+      - "./keycloak_data2/server.crt.pem:/etc/x509/https/tls.crt"   # Map certificate to container
+      - "./keycloak_data2/server.key.pem:/etc/x509/https/tls.key"   # Map private key to container
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/tls.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/tls.key
+    command:
+      - start-dev
+    ports:
+      - 8080:8080
+      - 8443:8443
+  api_gateway:
+    image: devopsfaith/krakend:2.6.0
+    container_name: api_gatway_ct
+    volumes:
+      - ./krakend:/etc/krakend/
+    depends_on:
+      - flask_app
+      - keycloak
+    ports:
+      - "8081:8081"
+  flask_app:
+    build:
+      context: ./flask_app/
+    container_name: flask_app_ct
+    ports:
+      - "5000:5000"
