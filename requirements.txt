@@ -1,4 +1,12 @@
 flask
 pandas
 numpy
-google-cloud-storage
+flask
+connexion[flask]
+connexion[uvicorn]
+sqlalchemy
+# connexion
+pathlib
+connexion[swagger-ui]
+sqlalchemy-utils
+sqlalchemy-bigquery
