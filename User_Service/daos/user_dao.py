@@ -11,7 +11,7 @@ class UserDAO(Base):
     date_of_birth = Column(Date)
 
     def __init__(self,id, name, balance, date_of_birth):
-        self.id
+        self.id = id
         self.name = name
         self.balance = balance
         self.date_of_birth = date_of_birth
