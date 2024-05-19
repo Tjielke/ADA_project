@@ -150,9 +150,12 @@ components:
   schemas:
     SaleIn:
       required:
+        - id
         - buyer_id
         - seller_id
       properties:
+        id:
+          format: string
         buyer_id:
           format: string
         seller_id:
@@ -164,9 +167,12 @@ components:
           items:
             type: object
             required:
+              - id
               - product_id
               - quantity
             properties:
+              id:
+                type: integer
               product_id:
                 type: integer
               quantity:

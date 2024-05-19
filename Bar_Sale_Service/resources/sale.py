@@ -14,14 +14,15 @@ class Bar_sale:
     @staticmethod
     def create(body):
         session = Session()
-        sale = Bar_sale_DAO(body['buyer_id'], body['seller_id'],
+        sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],
                                datetime.strptime(body['sale_time'], '%Y-%m-%d %H:%M:%S.%f'),
-                               StatusDAO(STATUS_CREATED, datetime.now()))
+                               StatusDAO(body['id'],STATUS_CREATED, datetime.now()))
         session.add(sale)
         session.flush()  # Ensures 'sale' gets an ID before we use it in the association
 
         for product_info in body['product_ids']: 
             product_in_sale = ProductInSale(
+                id=product_info['id'],
                 sale_id=sale.id,
                 product_id=product_info['product_id'],
                 quantity=product_info['quantity']

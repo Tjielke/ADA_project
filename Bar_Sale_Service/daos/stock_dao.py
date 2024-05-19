@@ -10,6 +10,7 @@ class StockDAO(Base):
     stock = Column(String)
     last_update = Column(TIMESTAMP(timezone=False))
 
-    def __init__(self, stock, last_update):
+    def __init__(self,id, stock, last_update):
+        self.id = id
         self.stock = stock
         self.last_update = last_update

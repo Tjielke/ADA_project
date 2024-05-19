@@ -12,3 +12,9 @@ class ProductInSale(Base):
 
     sale = relationship("Bar_sale_DAO", back_populates="sales")
     product = relationship("Product_DAO", back_populates="products")
+    
+    def __init__(self,id, sale_id, product_id,quantity):
+        self.id = id
+        self.sale_id = sale_id
+        self.product_id = product_id
+        self.quantity = quantity

@@ -16,7 +16,8 @@ class Product_DAO(Base):
     stock = relationship(StockDAO.__name__, backref=backref("product", uselist=False))
     products = relationship(ProductInSale.__name__, back_populates="product")
 
-    def __init__(self, name, price, stock):
+    def __init__(self,id, name, price, stock):
+        self.id = id
         self.name = name
         self.price = price
         self.stock = stock
