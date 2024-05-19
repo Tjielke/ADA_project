@@ -46,7 +46,7 @@ class Product:
     @staticmethod
     def delete(d_id):
         session = Session()
-        effected_rows = session.query(Product_DAO).filter(Product_DAO.id == d_id).delete()
+        effected_rows = session.query(Product_DAO).filter(Product_DAO.id == int(d_id)).delete()
         session.commit()
         session.close()
         if effected_rows == 0:
@@ -58,7 +58,7 @@ class Stock:
     @staticmethod
     def update(d_id, new_stock):
         session = Session()
-        Product = session.query(Product_DAO).filter(Product_DAO.id == d_id)[0]
+        Product = session.query(Product_DAO).filter(Product_DAO.id == int(d_id))[0]
         Product.stock.stock = new_stock
         Product.stock.last_update = datetime.datetime.now()
         session.commit()
