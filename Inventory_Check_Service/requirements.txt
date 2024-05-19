@@ -5,10 +5,12 @@ flask
 connexion[flask]
 connexion[uvicorn]
 sqlalchemy
-connexion
+# connexion
 pathlib
 connexion[swagger-ui]
 sqlalchemy-utils
 sqlalchemy-bigquery
+logging
+time
 google-cloud-pubsub==2.16.0
 schedule
