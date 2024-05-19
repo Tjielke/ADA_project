@@ -2,7 +2,6 @@ from datetime import datetime
 
 from flask import jsonify
 
-from constant import STATUS_CREATED
 from daos.user_dao import UserDAO
 from db import Session
 

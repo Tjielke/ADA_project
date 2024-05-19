@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from daos.stock_dao import StockDAO
@@ -13,8 +13,6 @@ class Product_DAO(Base):
     price = Column(String)
     # reference to status as foreign key relationship. This will be automatically assigned.
     stock_id = Column(Integer, ForeignKey('stock.id'))
-    # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
-    # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
     stock = relationship(StockDAO.__name__, backref=backref("product", uselist=False))
     products = relationship(ProductInSale.__name__, back_populates="product")
 

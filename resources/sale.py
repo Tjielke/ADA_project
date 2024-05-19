@@ -16,39 +16,16 @@ class Bar_sale:
         sale = Bar_sale_DAO(body['buyer_id'], body['seller_id'],
                                datetime.strptime(body['sale_time'], '%Y-%m-%d %H:%M:%S.%f'),
                                StatusDAO(STATUS_CREATED, datetime.now()))
-        print(sale.sale_time)
         session.add(sale)
         session.flush()  # Ensures 'sale' gets an ID before we use it in the association
 
-        for product_info in body['product_ids']:  # Assuming product_ids is a list of dicts
+        for product_info in body['product_ids']: 
             product_in_sale = ProductInSale(
                 sale_id=sale.id,
                 product_id=product_info['product_id'],
                 quantity=product_info['quantity']
             )
             session.add(product_in_sale)
-        
-        
-        
-        
-        # # Add products to the sale
-        # for product_id in body.get('product_ids', []):
-        #     product = session.query(Product_DAO).filter(Product_DAO.id == product_id).one()
-        #     sale.sales.append(product)
-            
-            
-        # session.add(sale)
-        # session.flush()  # Ensures 'sale' gets an ID before we use it in the association
-
-        # for product in body['product_ids']:
-        #     print(product)
-           
-#            session.execute(product_in_sale.insert(), {
-#                'sale_id': sale.id,
-#                'product_id': product['product_id'],
-#                'quantity': product['quantity']
-#            })
-#            sale.sales.append()
             
         session.add(sale)
         session.commit()
