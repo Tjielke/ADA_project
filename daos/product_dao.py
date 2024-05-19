@@ -2,6 +2,7 @@ from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from daos.stock_dao import StockDAO
+from daos.association import ProductInSale
 from db import Base
 
 
@@ -15,6 +16,7 @@ class Product_DAO(Base):
     # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
     # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
     stock = relationship(StockDAO.__name__, backref=backref("product", uselist=False))
+    products = relationship(ProductInSale.__name__, back_populates="product")
 
     def __init__(self, name, price, stock):
         self.name = name
