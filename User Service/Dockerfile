@@ -2,7 +2,7 @@
 FROM python:3.10.7-slim
 # Defining working directory and copy the requirements file. We will run the commands inside this new directory
 WORKDIR /usr/src/myapp
-# Copy requirements.txt  to the working directory
+# Copy requirements_pod.txt  to the working directory
 COPY requirements.txt .
 # Install required python packages
 RUN pip install --no-cache-dir -r requirements.txt

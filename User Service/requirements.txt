@@ -1,0 +1,12 @@
+flask
+pandas
+numpy
+flask
+connexion[flask]
+connexion[uvicorn]
+sqlalchemy
+# connexion
+pathlib
+connexion[swagger-ui]
+sqlalchemy-utils
+sqlalchemy-bigquery
