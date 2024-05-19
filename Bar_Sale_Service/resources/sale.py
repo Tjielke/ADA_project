@@ -14,25 +14,31 @@ class Bar_sale:
     @staticmethod
     def create(body):
         session = Session()
-        sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],
-                               datetime.strptime(body['sale_time'], '%Y-%m-%d %H:%M:%S.%f'),
-                               StatusDAO(body['id'],STATUS_CREATED, datetime.now()))
-        session.add(sale)
-        session.flush()  # Ensures 'sale' gets an ID before we use it in the association
+        d_id = body['id']
+        delivery = session.query(Bar_sale_DAO).filter(Bar_sale_DAO.id == int(body['id'])).first()
+        if delivery:
+            session.close()
+            return jsonify({'message': f'There is already delivery with id {d_id}'}), 403
+        else: 
+            sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],
+                                datetime.strptime(body['sale_time'], '%Y-%m-%d %H:%M:%S.%f'),
+                                StatusDAO(body['id'],STATUS_CREATED, datetime.now()))
+            session.add(sale)
+            session.flush()  # Ensures 'sale' gets an ID before we use it in the association
 
-        for product_info in body['product_ids']: 
-            product_in_sale = ProductInSale(
-                id=product_info['id'],
-                sale_id=sale.id,
-                product_id=product_info['product_id'],
-                quantity=product_info['quantity']
-            )
-            session.add(product_in_sale)
-            
-        session.add(sale)
-        session.commit()
-        session.refresh(sale)
-        session.close()
+            for product_info in body['product_ids']: 
+                product_in_sale = ProductInSale(
+                    id=product_info['id'],
+                    sale_id=sale.id,
+                    product_id=product_info['product_id'],
+                    quantity=product_info['quantity']
+                )
+                session.add(product_in_sale)
+                
+            session.add(sale)
+            session.commit()
+            session.refresh(sale)
+            session.close()
         return jsonify({'sale_id': sale.id}), 200
 
     @staticmethod
