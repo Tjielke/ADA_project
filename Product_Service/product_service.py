@@ -13,4 +13,4 @@ app.add_api('delivery-service-api.yaml',
             arguments={'title': 'Deliver Service API'})
 
 if __name__ == '__main__':
-    app.run(port=int(os.environ.get("PORT", 5000)), host='0.0.0.0')
+    app.run(port=int(os.environ.get("PORT", 5001)), host='0.0.0.0')
