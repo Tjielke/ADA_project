@@ -1,8 +1,10 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
+#from daos.association import product_in_sale
 from daos.status_dao import StatusDAO
 from daos.user_dao import UserDAO
+from daos.association import ProductInSale
 from db import Base
 
 
@@ -16,14 +18,13 @@ class Bar_sale_DAO(Base):
     status_id = Column(Integer, ForeignKey('status.id'))
     # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
     # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
-    status = relationship(StatusDAO.__name__, backref=backref("delivery", uselist=False))
-    buyer = relationship(UserDAO.__name__, backref=backref("delivery", uselist=False))
-    seller = relationship(UserDAO.__name__, backref=backref("delivery", uselist=False))
-
-    def __init__(self, buyer_id, seller_id, delivery_time, status,buyer,seller):
+    status = relationship(StatusDAO.__name__, backref=backref("sale", uselist=False))
+    buyer = relationship(UserDAO.__name__,foreign_keys=[buyer_id], backref=backref("purchase", uselist=False))
+    seller = relationship(UserDAO.__name__,foreign_keys=[seller_id], backref=backref("sales", uselist=False))
+    sales = relationship(ProductInSale.__name__, back_populates="sale")
+    
+    def __init__(self, buyer_id, seller_id, sale_time, status):
         self.buyer_id = buyer_id
         self.seller_id = seller_id
-        self.delivery_time = delivery_time
+        self.sale_time = sale_time
         self.status = status
-        self.buyer = buyer
-        self.seller = seller

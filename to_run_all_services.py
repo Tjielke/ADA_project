@@ -3,7 +3,9 @@ import os
 
 import connexion
 from connexion.resolver import RestyResolver
-from resources.delivery import Delivery
+from resources.sale import Bar_sale
+from resources.product import Product
+from resources.user import User
 from db import Base, engine
 
 logging.basicConfig(level=logging.INFO)
