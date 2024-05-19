@@ -1,0 +1,213 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Bar sale Service
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:5000/v1.0
+paths:
+  /bar_sale/{d_id}:
+    get:
+      summary: Get a Sale Record
+      operationId: resources.sale.Bar_sale.get
+      tags:
+        - sale record
+      parameters:
+        - name: d_id
+          in: path
+          description: Sale identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sale Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaleOut"
+        '404':
+          description: Sale record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete a Sale Record
+      tags:
+        - place records
+      operationId: resources.sale.Bar_sale.delete
+      parameters:
+        - name: d_id
+          in: path
+          description: Sale Record identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Record was deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnyMsg"
+        '404':
+          description: Sale record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /bar_sale/:
+    post:
+      summary: Create a Sale
+      operationId: resources.sale.Bar_sale.create
+      tags:
+        - Sale records
+      requestBody:
+        description: Sale Information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaleIn"
+      responses:
+        '200':
+          description: Created Sale Record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sale_id:
+                    type: string
+                    description: The sale ID
+        '500':
+          description: Record with the same name already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /bar_sale/{d_id}/status:
+    put:
+      summary: Update the status of a Sale
+      operationId: resources.sale.Status.update
+      tags:
+        - Sale records
+      parameters:
+        - name: d_id
+          in: path
+          description: Sale identifier
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Sale status
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status was updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnyMsg"
+        '404':
+          description: Place record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    SaleIn:
+      required:
+        - buyer_id
+        - seller_id
+      properties:
+        buyer_id:
+          format: string
+        seller_id:
+          format: string
+        sale_time:
+          format: string
+        product_ids:
+          type: array
+          items:
+            type: object
+            required:
+              - product_id
+              - quantity
+            properties:
+              product_id:
+                type: integer
+              quantity:
+                type: integer
+    SaleOut:
+      required:
+        - id
+      properties:
+        id:
+          type: number
+        buyer_id:
+          format: string
+        seller_id:
+          format: string
+        sale_time:
+          format: string
+        status:
+          $ref: "#/components/schemas/Status"
+    Status:
+      properties:
+        status:
+          type: string
+        last_update:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+    AnyMsg:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
