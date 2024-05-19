@@ -1,0 +1,44 @@
+{
+    "$schema": "http://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "output_encoding": "json",
+    "name": "barsaleapi",
+    "port": 8081,
+    "endpoints": [
+      {
+        "endpoint": "/bar_sale/{id}",
+        "method": "GET",
+        "output_encoding": "json",
+        "backend": [
+          {
+            "url_pattern": "/bar_sale/{id}",
+            "encoding": "json",
+            "method": "GET",
+            "host": [
+              "http://Bar_Sale_Service:5002/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/bar_sale/",
+        "method": "POST",
+        "output_encoding": "json",
+        "backend": [
+          {
+            "url_pattern": "/bar_sale",
+            "encoding": "json",
+            "method": "POST",
+            "host": [
+              "http://Bar_Sale_Service:5002/"
+            ],
+            "disable_host_sanitize": false,
+            "mapping": {
+              "product_type": "type"
+            }
+          }
+        ]
+      }
+    ]
+  }
