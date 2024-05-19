@@ -25,7 +25,7 @@ class Product:
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
-        product = session.query(Product_DAO).filter(Product_DAO.id == d_id).first()
+        product = session.query(Product_DAO).filter(Product_DAO.id == int(d_id)).first()
 
         if product:
             stock_obj = product.stock
