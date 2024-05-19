@@ -111,9 +111,12 @@ components:
   schemas:
     ProductIn:
       required:
+        - id
         - name
         - price
       properties:
+        id:
+          format: string
         name:
           format: string
         price:

@@ -10,7 +10,7 @@ class User:
     @staticmethod
     def create(body):
         session = Session()
-        user = UserDAO(body['name'], body['balance'],
+        user = UserDAO(body['id'],body['name'], body['balance'],
                        datetime.strptime(body['date_of_birth'], '%Y-%m-%d').date()
                        )
         session.add(user)

@@ -12,8 +12,8 @@ class Product:
     @staticmethod
     def create(body):
         session = Session()
-        product = Product_DAO(body['name'], body['price'],
-                               StockDAO(0, datetime.now()))
+        product = Product_DAO(body['id'],body['name'], body['price'],
+                               StockDAO(body['id'],0, datetime.now()))
         session.add(product)
         session.commit()
         session.refresh(product)

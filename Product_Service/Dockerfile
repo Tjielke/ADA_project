@@ -11,6 +11,6 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5001
 # Enviroment Variables
-ENV DB_URL  sqlite:///delivery.db
+ENV DB_URL  bigquery://adaprojects/bardb
 # Run our App
 CMD ["python3","product_service.py"]

@@ -110,10 +110,13 @@ components:
   schemas:
     UserIn:
       required:
+        - id
         - name
         - balance
         - date_of_birth
       properties:
+        id:
+          format: string
         name:
           format: string
         balance:
