@@ -1,0 +1,158 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Bar sale Service
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:5000/v1.0
+paths:
+  /product/:
+    post:
+      summary: Create a product
+      operationId: resources.product.Product.create
+      tags:
+        - Product records
+      requestBody:
+        description: Product Information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductIn"
+      responses:
+        '200':
+          description: Created Product Record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product_id:
+                    type: string
+                    description: The Product ID
+        '500':
+          description: Record with the same name already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /product/{d_id}:
+    get:
+      summary: Get a Product Record
+      operationId: resources.product.Product.get
+      tags:
+        - Product record
+      parameters:
+        - name: d_id
+          in: path
+          description: Product identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductOut"
+        '404':
+          description: Product record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete a Product Record
+      tags:
+        - place records
+      operationId: resources.product.Product.delete
+      parameters:
+        - name: d_id
+          in: path
+          description: Product Record identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Record was deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnyMsg"
+        '404':
+          description: Product record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  schemas:
+    ProductIn:
+      required:
+        - name
+        - price
+      properties:
+        name:
+          format: string
+        price:
+          format: string
+    ProductOut:
+      required:
+        - id
+      properties:
+        id:
+          type: number
+        name:
+          format: string
+        price:
+          format: string
+        stock:
+          $ref: "#/components/schemas/Stock"
+    Stock:
+      properties:
+        stock:
+          type: string
+        last_update:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+    AnyMsg:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
