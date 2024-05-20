@@ -15,7 +15,7 @@
             "encoding": "json",
             "method": "GET",
             "host": [
-              "http://bar_service_ct:5002/"
+              "http://bar_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -31,7 +31,7 @@
             "encoding": "json",
             "method": "POST",
             "host": [
-              "http://bar_service_ct:5002/"
+              "http://bar_service_ct:5000/"
             ],
             "disable_host_sanitize": false,
             "mapping": {
