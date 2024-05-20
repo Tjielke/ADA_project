@@ -14,7 +14,7 @@ services:
       - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/tls.crt
       - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/tls.key
     command:
-      - start-dev
+      - ["start-dev","--verbose"]
     ports:
       - 8082:8080
       - 8443:8443  
