@@ -10,3 +10,4 @@ pathlib
 connexion[swagger-ui]
 sqlalchemy-utils
 sqlalchemy-bigquery
+schedule
