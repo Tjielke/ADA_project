@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import json
 from flask import jsonify
 
 from constant import STATUS_CREATED
@@ -7,6 +7,7 @@ from daos.bar_sale_dao import Bar_sale_DAO
 from daos.status_dao import StatusDAO
 from daos.product_dao import Product_DAO
 from daos.association import ProductInSale
+from pub_sub_utils import publish_message
 from db import Session
 
 
@@ -39,6 +40,14 @@ class Bar_sale:
             session.commit()
             session.refresh(sale)
             session.close()
+        cost_data = {
+        "total_costs": "10"
+        }
+        cost_data = json.dumps(cost_data).encode("utf-8")
+        publish_message(project="adaprojects",topic="balance_update",message=cost_data,event_type="Balance")
+        product_data = body['product_ids']
+        product_data = json.dumps(product_data).encode("utf-8")
+        publish_message(project="adaprojects",topic="balance_update",message=product_data,event_type="Balance")
         return jsonify({'sale_id': sale.id}), 200
 
     @staticmethod

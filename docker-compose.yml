@@ -40,3 +40,6 @@ services:
     container_name: product_service_ct
     ports:
       - "5001:5000"
+#settings to allow access to internetkeys
+#sudo chown -R $USER:$USER keycloak_data
+#sudo chmod -R 755 keycloak_data

@@ -10,3 +10,6 @@ pathlib
 connexion[swagger-ui]
 sqlalchemy-utils
 sqlalchemy-bigquery
+google-cloud-pubsub==2.16.0
+schedule
+json

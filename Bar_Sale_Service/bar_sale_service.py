@@ -4,6 +4,14 @@ from flask import Flask, request
 from resources.sale import Bar_sale,Status
 from db import Base, engine
 
+from pub_sub_utils import create_subscription, create_topic
+
+logging.getLogger().setLevel(logging.INFO)
+create_topic("adaprojects", "inventory_update") # make sure to change the project id
+create_subscription("adaprojects", "inventory_update", "inventory_update_sub")
+create_topic("adaprojects", "balance_update")
+create_subscription("adaprojects", "balance_update", "balance_update_sub")
+
 logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 Base.metadata.create_all(engine)
