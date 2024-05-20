@@ -3,6 +3,7 @@ import os
 from flask import Flask, request
 from resources.sale import Bar_sale,Status
 from db import Base, engine
+from flask import jsonify
 
 from pub_sub_utils import create_subscription, create_topic
 
@@ -18,8 +19,11 @@ Base.metadata.create_all(engine)
 
 @app.route('/bar_sale', methods=['POST'])
 def create_sale():
-    req_data = request.get_json()
-    return Bar_sale.create(req_data)
+    if request.is_json:
+        req_data = request.get_json()
+        return Bar_sale.create(req_data)
+    else:
+        jsonify({'message': 'Request must be JSON'}), 415
 
 @app.route('/bar_sale/<d_id>', methods=['GET'])
 def get_delivery(d_id):
