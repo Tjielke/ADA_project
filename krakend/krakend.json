@@ -4,6 +4,7 @@
     "output_encoding": "json",
     "name": "barsaleapi",
     "port": 8081,
+    "timeout": "10000ms",
     "endpoints": [
       {
         "endpoint": "/bar_sale/{id}",
