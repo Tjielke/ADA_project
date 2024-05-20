@@ -1,5 +1,4 @@
 from datetime import datetime
-import json
 from flask import jsonify
 
 from constant import STATUS_CREATED
@@ -40,14 +39,8 @@ class Bar_sale:
             session.commit()
             session.refresh(sale)
             session.close()
-        cost_data = {
-        "total_costs": "10"
-        }
-        cost_data = json.dumps(cost_data).encode("utf-8")
-        publish_message(project="adaprojects",topic="balance_update",message=cost_data,event_type="Balance")
-        product_data = body['product_ids']
-        product_data = json.dumps(product_data).encode("utf-8")
-        publish_message(project="adaprojects",topic="balance_update",message=product_data,event_type="Balance")
+        publish_message(project="adaprojects",topic="balance_update",message=jsonify({"total_costs": "10"}),event_type="Balance")
+        publish_message(project="adaprojects",topic="inventory_update",message=jsonify(body['product_ids']),event_type="Inventory")
         return jsonify({'sale_id': sale.id}), 200
 
     @staticmethod
