@@ -13,12 +13,12 @@ services:
   bar_service:
     build:
       context: ./Bar_Sale_Service
-    container_name: bar_service
+    container_name: bar_service_ct
     ports:
       - "5002:5002"
   product_service:
     build:
       context: ./Product_Service
-    container_name: product_service
+    container_name: product_service_ct
     ports:
       - "5001:5001"
