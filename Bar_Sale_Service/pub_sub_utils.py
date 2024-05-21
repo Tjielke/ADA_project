@@ -17,16 +17,16 @@ def create_topic(project_id, topic_id):
     except Exception as ex:
         logging.info(ex)  # instead, can check if there is a topic already, and only if not create a new one
 
-def publish_message(project, topic, message):
+def publish_message(project, topic, message, event_type):
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project, topic)
-    future = publisher.publish(topic_path, message)
+    future = publisher.publish(topic_path, message, event_type=event_type)
     try:
         future.result()
     except Exception as ex:
         logging.info(ex)
         future.cancel()
-    logging.info(f"Published event to {topic_path}.")
+    logging.info(f"Published event {event_type} to {topic_path}.")
 
 def create_subscription(project_id, topic_id, subscription_id):
     try:
