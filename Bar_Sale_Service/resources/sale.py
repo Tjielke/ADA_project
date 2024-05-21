@@ -35,7 +35,7 @@ class Bar_sale:
                     quantity=product_info['quantity']
                 )
                 session.add(product_in_sale)
-                publish_message(project="adaprojects",topic="inventory_update",message=json.dumps({"id":product_info["product_id"], "amount_sold":product_info["quantity"]}).encode('utf-8'),event_type="Inventory")
+                #publish_message(project="adaprojects",topic="inventory_update",message=json.dumps({"id":product_info["product_id"], "amount_sold":product_info["quantity"]}).encode('utf-8'),event_type="Inventory")
             session.commit()
             session.refresh(sale)
             session.close()
