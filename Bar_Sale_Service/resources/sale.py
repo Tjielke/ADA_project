@@ -14,7 +14,6 @@ from db import Session
 class Bar_sale:
     @staticmethod
     def create(body):
-        print(body)
         session = Session()
         d_id = body['id']
         delivery = session.query(Bar_sale_DAO).filter(Bar_sale_DAO.id == int(body['id'])).first()
@@ -40,7 +39,6 @@ class Bar_sale:
             session.commit()
             session.refresh(sale)
             session.close()
-        print(sale.id)
         #publish_message(project="adaprojects",topic="balance_update",message=json.dumps({"total_costs": "10"}),event_type="Balance")
         #publish_message(project="adaprojects",topic="inventory_update",message=json.dumps(body['product_ids']),event_type="Inventory")
         return jsonify({'sale_id': sale.id}), 200
