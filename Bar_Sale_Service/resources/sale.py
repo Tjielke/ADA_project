@@ -39,8 +39,8 @@ class Bar_sale:
             session.commit()
             session.refresh(sale)
             session.close()
-        #publish_message(project="adaprojects",topic="balance_update",message=json.dumps({"total_costs": "10"}),event_type="Balance")
-        #publish_message(project="adaprojects",topic="inventory_update",message=json.dumps(body['product_ids']),event_type="Inventory")
+        publish_message(project="adaprojects",topic="balance_update",message=json.dumps({"total_costs": "10"}),event_type="Balance")
+        publish_message(project="adaprojects",topic="inventory_update",message=json.dumps(body['product_ids']),event_type="Inventory")
         return jsonify({'sale_id': sale.id}), 200
 
     @staticmethod
