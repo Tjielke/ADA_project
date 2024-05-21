@@ -45,6 +45,7 @@
         "method": "POST",
         "output_encoding": "json",
         "input_headers": [
+          "Content-Type",
           "Authorization"
           ],
         "extra_config": {
