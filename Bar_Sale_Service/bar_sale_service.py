@@ -7,11 +7,11 @@ from flask import jsonify
 
 from pub_sub_utils import create_subscription, create_topic
 
-#logging.getLogger().setLevel(logging.INFO)
-#create_topic("adaprojects", "inventory_update") # make sure to change the project id
-#create_subscription("adaprojects", "inventory_update", "inventory_update_sub")
-#create_topic("adaprojects", "balance_update")
-#create_subscription("adaprojects", "balance_update", "balance_update_sub")
+logging.getLogger().setLevel(logging.INFO)
+create_topic("ada-2023-413021", "inventory_update") # make sure to change the project id
+create_subscription("ada-2023-413021", "inventory_update", "inventory_update_sub")
+create_topic("ada-2023-413021", "balance_update")
+create_subscription("ada-2023-413021", "balance_update", "balance_update_sub")
 
 logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7876bc78-3b0e-4ca5-a4d9-6766615e7e35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/deliveryservice_faas.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/deliveryservice_faas/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/grpc_example.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/inventory_service_pb2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../lab4/livelab/grpc_example/inventory_service_pb2_grpc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/gcfun2/.env.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/gcfun2/.env.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/gcfun3/.env.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/gcfun3/.env.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/livelab/pipeline_conf/diabetes_predictor_mlp.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/livelab/pipeline_conf/diabetes_predictor_mlp.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/livelab/pipeline_conf/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/livelab/pipeline_conf/parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/livelab/trigger-vertext-ai/.env.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/livelab/trigger-vertext-ai/.env.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/pubsubclients/create_topic_sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/pubsubclients/create_topic_sub.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/k8smanifests/deliveryservice-api.deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/k8smanifests/deliveryservice-api.deployment.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2digYXxlcpZU9K7VVgsASOs3upe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7876bc78-3b0e-4ca5-a4d9-6766615e7e35" name="Changes" comment="" />
+      <created>1710496360720</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710496360720</updated>
+      <workItem from="1710496361888" duration="786000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
