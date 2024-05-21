@@ -19,16 +19,9 @@ Base.metadata.create_all(engine)
 
 @app.route('/bar_sale', methods=['POST'])
 def create_sale():
-    try:
-        if request.is_json:
-            req_data = request.get_json()
-            print("Request data:", req_data)  # Debugging print
-            return Bar_sale.create(req_data)
-        else:
-            return jsonify({'message': 'Request must be JSON'}), 415
-    except Exception as e:
-        print(f"An error occurred: {e}")  # Debugging print
-        return jsonify({'message': 'An internal error occurred'}), 500
+    req_data = request.get_json()
+    return Bar_sale.create(req_data)
+
 
 @app.route('/bar_sale/<d_id>', methods=['GET'])
 def get_delivery(d_id):
