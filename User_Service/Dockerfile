@@ -11,6 +11,6 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Enviroment Variables
-ENV DB_URL  bigquery://adaprojects/bardb
+ENV DB_URL  bigquery://ada-2023-413021/bardb
 # Run our App
 CMD ["python3","user_service.py"]
