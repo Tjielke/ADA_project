@@ -1,3 +1,5 @@
+import time
+time.sleep(5)
 import logging
 import os
 from flask import Flask, request
@@ -9,16 +11,16 @@ app = Flask(__name__)
 Base.metadata.create_all(engine)
 
 @app.route('/user', methods=['POST'])
-def create_sale():
+def create_user():
     req_data = request.get_json()
     return User.create(req_data)
 
 @app.route('/user/<d_id>', methods=['GET'])
-def get_delivery(d_id):
+def get_user(d_id):
     return User.get(d_id)
 
-@app.route('/deliveries/<d_id>', methods=['DELETE'])
-def delete_delivery(d_id):
+@app.route('/user/<d_id>', methods=['DELETE'])
+def delete_user(d_id):
     return User.delete(d_id)
 
 if __name__ == '__main__':
