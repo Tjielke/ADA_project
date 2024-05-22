@@ -14,6 +14,8 @@ steps:
     - --boot-disk-type=pd-balanced
     - --tags=http-server,https-server
     - --metadata=startup-script='#! /bin/bash
+        sudo mkdir -p /home/bus_jochem
+        sudo chown bus_jochem:bus_jochem /home/bus_jochem
         sudo apt-get update
         sudo apt-get install -y docker.io docker-compose
         sudo usermod -aG docker bus_jochem
@@ -50,7 +52,7 @@ steps:
 
 # Step 3: Copy files to Google Cloud Storage
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', '-r', '.', 'gs://bar-app-bucket/my-app']
+  args: ['cp', '-r', '.', 'gs://Bar-App-Bucket/my-app']
 
 # Step 4: Ensure the target directory exists on the VM
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -59,7 +61,7 @@ steps:
     - ssh
     - bar-app-vm
     - --zone=us-central1-a
-    - --command='sudo mkdir -p /home/bus_jochem/my-app'
+    - --command='sleep 30 && sudo mkdir -p /home/bus_jochem/my-app'
 
 # Step 5: Copy files from GCS to the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -68,7 +70,7 @@ steps:
     - ssh
     - bar-app-vm
     - --zone=us-central1-a
-    - --command='gsutil cp -r gs://bar-app-bucket/my-app /home/bus_jochem/my-app'
+    - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/bus_jochem/my-app'
 
 # Step 6: Run docker-compose on the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -83,4 +85,4 @@ steps:
 timeout: '1200s'
 
 # Specify the logs bucket
-logsBucket: 'gs://ada-project-logs-bucket'
+logsBucket: 'gs://my-logs-bucket'
