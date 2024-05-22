@@ -57,7 +57,7 @@ steps:
   args:
     - compute
     - ssh
-    - my-new-vm-instance
+    - Bar-App-VM
     - --zone=us-central1-a
     - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/$USER/my-app'
 
@@ -66,14 +66,12 @@ steps:
   args:
     - compute
     - ssh
-    - my-new-vm-instance
+    - Bar-App-VM
     - --zone=us-central1-a
     - --command='cd /home/$USER/my-app && sudo docker-compose up -d'
 
-# Substitutions
-substitutions:
-  _ZONE: us-central1-a
-  _VM_NAME: my-new-vm-instance
-
 # Timeout for the entire build
 timeout: '1200s'
+
+# Specify the logs bucket
+logsBucket: 'gs://my-logs-bucket'
