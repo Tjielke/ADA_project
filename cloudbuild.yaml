@@ -52,7 +52,7 @@ steps:
 
 # Step 3: Copy files to Google Cloud Storage
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', '-r', '.', 'gs://Bar-App-Bucket/my-app']
+  args: ['cp', '-r', '.', 'gs://bar-app-bucket/my-app']
 
 # Step 4: Ensure the target directory exists on the VM
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -70,7 +70,7 @@ steps:
     - ssh
     - bar-app-vm
     - --zone=us-central1-a
-    - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/bus_jochem/my-app'
+    - --command='gsutil cp -r gs://bar-app-bucket/my-app /home/bus_jochem/my-app'
 
 # Step 6: Run docker-compose on the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
