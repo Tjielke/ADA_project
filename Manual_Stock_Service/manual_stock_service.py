@@ -12,7 +12,7 @@ Base.metadata.create_all(engine)
 
 @app.route('/product/<d_id>/stock', methods=['PUT'])
 def update_delivery_status(d_id):
-    stock = request.get_json()
+    stock = request.args.get('stock')
     return Stock.update(d_id, stock)
 
 if __name__ == '__main__':

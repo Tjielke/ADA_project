@@ -14,7 +14,7 @@ class Product:
     def create(body):
         session = Session()
         product = Product_DAO(body['id'],body['name'], body['price'],
-                               StockDAO(body['id'],0,datetime.now(), datetime.now()))
+                               StockDAO(body['id'],0, datetime.now()))
         session.add(product)
         session.commit()
         session.refresh(product)
