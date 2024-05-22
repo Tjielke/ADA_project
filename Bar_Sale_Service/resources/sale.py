@@ -25,12 +25,12 @@ class Bar_sale:
             query_product = session.query(Product_DAO).filter(Product_DAO.id == int(product['product_id']))
             stock_product = session.query(StockDAO).filter(StockDAO.id == int(product['product_id'])).first()
             if int(stock_product.stock_position) >= product['quantity']:
-                total_cost = total_cost + int(query_product['price'])*int(product['quantity'])
+                total_cost = total_cost + int(query_product.price)*int(product['quantity'])
             else:
                 session.close()
                 return jsonify({'message': f'There is not enough stock to fulfill the order'}), 403
         balance_user = session.query(UserDAO).filter(UserDAO.id == int(body['buyer_id']))
-        if balance_user['balance']<total_cost:
+        if int(balance_user.balance)<total_cost:
             session.close()
             return jsonify({'message': f'There is not enough balance in the account to fulfill the order'}), 403
         else: 
