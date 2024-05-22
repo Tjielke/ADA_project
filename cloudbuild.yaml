@@ -57,7 +57,7 @@ steps:
   args:
     - compute
     - ssh
-    - Bar-App-VM
+    - bar-app-vm
     - --zone=us-central1-a
     - --command='mkdir -p /home/bus.jochem/my-app'
 
