@@ -16,7 +16,7 @@ main:
         args:
           projectId: ${project_id}
           body:
-            query: ${"SELECT stock FROM `" + project_id + "." + dataset_id + "." + table_id + "` WHERE id = " + p_id}
+            query: ${"SELECT stock_position FROM `" + project_id + "." + dataset_id + "." + table_id + "` WHERE id = " + p_id}
             useLegacySql: false
         result: current_stock_query_result
 
@@ -24,7 +24,7 @@ main:
         assign:
           - current_stock: ${int(current_stock_query_result.rows[0].f[0].v)}
           - new_stock: ${current_stock - int(sold_amount)}
-          - update_query: ${"UPDATE `" + project_id + "." + dataset_id + "." + table_id + "` SET stock = '" + new_stock + "', last_update = CURRENT_TIMESTAMP() WHERE id = " + p_id}
+          - update_query: ${"UPDATE `" + project_id + "." + dataset_id + "." + table_id + "` SET stock_position = '" + new_stock + "', last_update = CURRENT_TIMESTAMP() WHERE id = " + p_id}
 
     - execute_query:
         call: googleapis.bigquery.v2.jobs.insert
