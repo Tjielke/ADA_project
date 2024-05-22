@@ -25,7 +25,7 @@ class Bar_sale:
             query_product = session.query(Product_DAO).filter(Product_DAO.id == int(product['product_id']))
             stock_product = session.query(StockDAO).filter(StockDAO.id == int(product['product_id'])).first()
             if int(stock_product.stock_position) >= product['quantity']:
-                total_cost = total_cost + query_product['price']*int(product['quantity'])
+                total_cost = total_cost + int(query_product['price'])*int(product['quantity'])
             else:
                 session.close()
                 return jsonify({'message': f'There is not enough stock to fulfill the order'}), 403
