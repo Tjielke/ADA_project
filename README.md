@@ -50,7 +50,7 @@ When adding a new sale using Insomnia with the correct Keycloak credentials, the
 
 Use the following Keycloak credentials for authentication:
 
-- **URL:** `https://34.30.106.179:8443/realms/adaproject/protocol/openid-connect/token`
+- **URL:** `https://VM_IP:8443/realms/adaproject/protocol/openid-connect/token`
 - **Form Data:**
   - `client_id`: `bar-api`
   - `grant_type`: `password`
