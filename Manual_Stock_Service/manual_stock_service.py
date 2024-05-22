@@ -1,7 +1,7 @@
 import logging
 import os
 from flask import Flask, request
-from Manual_Stock_Service.resources.stock import Stock
+from resources.stock import Stock
 from db import Base, engine
 
 logging.basicConfig(level=logging.INFO)
