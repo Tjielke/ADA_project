@@ -17,11 +17,6 @@ def create_sale():
 def get_delivery(d_id):
     return Product.get(d_id)
 
-@app.route('/product/<d_id>/stock', methods=['PUT'])
-def update_delivery_status(d_id):
-    stock = request.args.get('stock')
-    return Stock.update(d_id, stock)
-
 @app.route('/product/<d_id>', methods=['DELETE'])
 def delete_delivery(d_id):
     return Product.delete(d_id)

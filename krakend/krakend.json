@@ -169,7 +169,7 @@
       },
       {
         "endpoint": "/product/{id}/stock",
-        "method": "POST",
+        "method": "PUT",
         "output_encoding": "json",
         "input_headers": [
           "Content-Type",
@@ -186,9 +186,9 @@
           {
             "url_pattern": "/product/{id}/stock",
             "encoding": "json",
-            "method": "POST",
+            "method": "PUT",
             "host": [
-              "http://product_service_ct:5000/"
+              "http://stock_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }

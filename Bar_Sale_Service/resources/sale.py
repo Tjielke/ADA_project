@@ -6,6 +6,8 @@ from constant import STATUS_CREATED
 from daos.bar_sale_dao import Bar_sale_DAO
 from daos.product_dao import Product_DAO
 from daos.association import ProductInSale
+from daos.stock_dao import StockDAO
+from daos.user_dao import UserDAO
 from pub_sub_utils import publish_message
 from db import Session
 
@@ -19,11 +21,23 @@ class Bar_sale:
         if delivery:
             session.close()
             return jsonify({'message': f'There is already delivery with id {d_id}'}), 403
+        total_cost = 0
+        for product in body['product_ids']:
+            query_product = session.query(Product_DAO).filter(Product_DAO.id == int(product['product_id']))
+            stock_product = session.query(StockDAO).filter(StockDAO.id == int(product['product_id'])).first()
+            if stock_product['stock'] >= product['quantity']:
+                total_cost = total_cost + query_product['price']*int(product['quantity'])
+            else:
+                session.close()
+                return jsonify({'message': f'There is not enough stock to fulfill the order'}), 403
+        balance_user = session.query(UserDAO).filter(UserDAO.id == int(body['buyer_id']))
+        if balance_user['balance']<total_cost:
+            session.close()
+            return jsonify({'message': f'There is not enough balance in the account to fulfill the order'}), 403
         else: 
             sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],datetime.now())
             session.add(sale)
             session.flush()  # Ensures 'sale' gets an ID before we use it in the association
-
             for product_info in body['product_ids']: 
                 product_in_sale = ProductInSale(
                     id=product_info['id'],
