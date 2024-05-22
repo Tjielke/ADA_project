@@ -45,16 +45,8 @@
         "method": "POST",
         "output_encoding": "json",
         "input_headers": [
-          "Content-Type",
-          "Authorization"
+          "Content-Type"
           ],
-        "extra_config": {
-          "auth/validator": {
-            "alg": "RS256",
-            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
-            "disable_jwk_security": true
-          } 
-        },
         "backend": [
           {
             "url_pattern": "/bar_sale",
@@ -223,7 +215,7 @@
             "encoding": "json",
             "method": "POST",
             "host": [
-              "http://user_service_ct:5002/"
+              "http://user_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -249,7 +241,7 @@
             "encoding": "json",
             "method": "GET",
             "host": [
-              "http://user_service_ct:5002/"
+              "http://user_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -275,7 +267,7 @@
             "encoding": "json",
             "method": "DELETE",
             "host": [
-              "http://user_service_ct:5002/"
+              "http://user_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
