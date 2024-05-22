@@ -52,7 +52,16 @@ steps:
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', '-r', '.', 'gs://bar-app-bucket/my-app']
 
-# Step 4: Copy files from GCS to the new VM
+# Step 4: Ensure the target directory exists on the VM
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - compute
+    - ssh
+    - Bar-App-VM
+    - --zone=us-central1-a
+    - --command='mkdir -p /home/bus.jochem/my-app'
+
+# Step 5: Copy files from GCS to the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
     - compute
@@ -61,7 +70,7 @@ steps:
     - --zone=us-central1-a
     - --command='gsutil cp -r gs://bar-app-bucket/my-app /home/bus.jochem/my-app'
 
-# Step 5: Run docker-compose on the new VM
+# Step 6: Run docker-compose on the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
     - compute
