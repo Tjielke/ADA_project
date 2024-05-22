@@ -13,4 +13,3 @@ sqlalchemy-bigquery
 google-cloud-pubsub==2.16.0
 schedule
 google-cloud-bigquery-storage
-time
