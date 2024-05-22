@@ -59,7 +59,7 @@ steps:
     - ssh
     - bar-app-vm
     - --zone=us-central1-a
-    - --command='mkdir -p /home/bus_jochem/my-app'
+    - --command='sudo mkdir -p /home/bus_jochem/my-app'
 
 # Step 5: Copy files from GCS to the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
