@@ -1,0 +1,61 @@
+main:
+  params: [args]
+  steps:
+    - init:
+        assign:
+          - project_id: "adaprojects" 
+          - dataset_id: "bardb" 
+          - table_id: "user"
+          - encoded_message_data: ${args.data.message.data}
+          - decoded_message_data: ${json.decode(base64.decode(encoded_message_data))}
+          - user_id: ${decoded_message_data.id}
+          - total_costs: ${double(decoded_message_data.total_costs)}
+
+    - fetch_current_balance:
+        call: googleapis.bigquery.v2.jobs.query
+        args:
+          projectId: ${project_id}
+          body:
+            query: ${"SELECT balance FROM `" + project_id + "." + dataset_id + "." + table_id + "` WHERE id = " + user_id}
+            useLegacySql: false
+        result: current_balance_query_result
+
+    - calculate_new_balance:
+        assign:
+          - current_balance: ${double(current_balance_query_result.rows[0].f[0].v)}
+          - new_balance: ${current_balance - total_costs}
+          - update_query: ${"UPDATE `" + project_id + "." + dataset_id + "." + table_id + "` SET balance = " + new_balance + " WHERE id = " + user_id}
+
+    - execute_query:
+        call: googleapis.bigquery.v2.jobs.insert
+        args:
+          projectId: ${project_id}
+          body:
+            configuration:
+              query:
+                query: ${update_query}
+                useLegacySql: false
+        result: query_result
+
+    - wait_for_query:
+        call: googleapis.bigquery.v2.jobs.get
+        args:
+          projectId: ${project_id}
+          jobId: ${query_result.jobReference.jobId}
+        result: query_status
+
+    - check_query_status:
+        switch:
+          - condition: ${query_status.status.state == "DONE"}
+            next: done
+          - condition: ${query_status.status.state != "DONE"}
+            next: wait
+
+    - wait:
+        call: sys.sleep
+        args:
+          seconds: 1
+        next: wait_for_query
+
+    - done:
+        return: "User Balance Updated"
