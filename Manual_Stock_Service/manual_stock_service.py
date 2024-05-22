@@ -1,5 +1,5 @@
 import time
-time.sleep(10)
+time.sleep(2)
 import logging
 import os
 from flask import Flask, request
