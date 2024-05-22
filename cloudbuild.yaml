@@ -19,7 +19,9 @@ steps:
         sudo apt-get update
         sudo apt-get install -y docker.io docker-compose
         sudo usermod -aG docker bus_jochem
-        sudo systemctl enable docker'
+        sudo systemctl enable docker
+        sudo mkdir -p /home/bus_jochem/my-app
+        sudo chown bus_jochem:bus_jochem /home/bus_jochem/my-app'
 
 # Step 2: Configure firewall rules (if not already configured)
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -61,7 +63,7 @@ steps:
     - ssh
     - bar-app-vm
     - --zone=us-central1-a
-    - --command='sleep 30 && sudo mkdir -p /home/bus_jochem/my-app'
+    - --command='sudo mkdir -p /home/bus_jochem/my-app'
 
 # Step 5: Copy files from GCS to the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
