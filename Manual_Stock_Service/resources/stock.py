@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from flask import jsonify
+from daos.bar_sale_dao import Bar_sale_DAO
+from daos.association import ProductInSale
 from daos.product_dao import Product_DAO
 from db import Session
 
