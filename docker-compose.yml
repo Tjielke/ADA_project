@@ -26,6 +26,7 @@ services:
     depends_on:
       - bar_service
       - product_service
+      - user_service
     ports:
       - "8080:8081"
   bar_service:
@@ -40,6 +41,12 @@ services:
     container_name: product_service_ct
     ports:
       - "5001:5000"
+  user_service:
+    build:
+      context: ./User_Service
+    container_name: user_service_ct
+    ports:
+      - "5002:5000"
 #settings to allow access to internetkeys
 #sudo chown -R $USER:$USER keycloak_data
 #sudo chmod -R 755 keycloak_data

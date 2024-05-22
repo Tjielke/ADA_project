@@ -4,7 +4,6 @@ import json
 
 from constant import STATUS_CREATED
 from daos.bar_sale_dao import Bar_sale_DAO
-from daos.status_dao import StatusDAO
 from daos.product_dao import Product_DAO
 from daos.association import ProductInSale
 from pub_sub_utils import publish_message
@@ -21,9 +20,7 @@ class Bar_sale:
             session.close()
             return jsonify({'message': f'There is already delivery with id {d_id}'}), 403
         else: 
-            sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],
-                                datetime.strptime(body['sale_time'], '%Y-%m-%d %H:%M:%S.%f'),
-                                StatusDAO(body['id'],STATUS_CREATED, datetime.now()))
+            sale = Bar_sale_DAO(body['id'],body['buyer_id'], body['seller_id'],datetime.now())
             session.add(sale)
             session.flush()  # Ensures 'sale' gets an ID before we use it in the association
 
@@ -76,13 +73,4 @@ class Bar_sale:
             return jsonify({'message': f'There is no sale with id {d_id}'}), 404
         else:
             return jsonify({'message': 'The sale was removed'}), 200
-        
-class Status:
-    @staticmethod
-    def update(d_id, status):
-        session = Session()
-        delivery = session.query(Bar_sale_DAO).filter(Bar_sale_DAO.id == int(d_id))[0]
-        delivery.status.status = status
-        delivery.status.last_update = datetime.datetime.now()
-        session.commit()
-        return jsonify({'message': 'The sale status was updated'}), 200
+    

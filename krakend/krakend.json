@@ -69,6 +69,217 @@
             }
           }
         ]
+      },
+      {
+        "endpoint": "/bar_sale/{id}",
+        "method": "DELETE",
+        "output_encoding": "json",
+        "input_headers": [
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/bar_sale/{id}",
+            "encoding": "json",
+            "method": "DELETE",
+            "host": [
+              "http://bar_service_ct:5000/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/product/{id}",
+        "method": "GET",
+        "output_encoding": "json",
+        "input_headers": [
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/product/{id}",
+            "encoding": "json",
+            "method": "GET",
+            "host": [
+              "http://product_service_ct:5001/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/product/{id}",
+        "method": "DELETE",
+        "output_encoding": "json",
+        "input_headers": [
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/product/{id}",
+            "encoding": "json",
+            "method": "DELETE",
+            "host": [
+              "http://product_service_ct:5001/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/product/",
+        "method": "POST",
+        "output_encoding": "json",
+        "input_headers": [
+          "Content-Type",
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/product",
+            "encoding": "json",
+            "method": "POST",
+            "host": [
+              "http://product_service_ct:5001/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/product/{id}/stock",
+        "method": "POST",
+        "output_encoding": "json",
+        "input_headers": [
+          "Content-Type",
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/product/{id}/stock",
+            "encoding": "json",
+            "method": "POST",
+            "host": [
+              "http://product_service_ct:5001/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/user/",
+        "method": "POST",
+        "output_encoding": "json",
+        "input_headers": [
+          "Content-Type",
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/user",
+            "encoding": "json",
+            "method": "POST",
+            "host": [
+              "http://user_service_ct:5002/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/user/{id}",
+        "method": "GET",
+        "output_encoding": "json",
+        "input_headers": [
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/user/{id}",
+            "encoding": "json",
+            "method": "GET",
+            "host": [
+              "http://user_service_ct:5002/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
+      },
+      {
+        "endpoint": "/user/{id}",
+        "method": "DELETE",
+        "output_encoding": "json",
+        "input_headers": [
+          "Authorization"
+          ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/adaproject/protocol/openid-connect/certs",
+            "disable_jwk_security": true
+          } 
+        },
+        "backend": [
+          {
+            "url_pattern": "/user/{id}",
+            "encoding": "json",
+            "method": "DELETE",
+            "host": [
+              "http://user_service_ct:5002/"
+            ],
+            "disable_host_sanitize": false
+          }
+        ]
       }
     ]
   }
