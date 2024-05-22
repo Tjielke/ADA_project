@@ -16,7 +16,7 @@ steps:
     - --metadata=startup-script='#! /bin/bash
         sudo apt-get update
         sudo apt-get install -y docker.io docker-compose
-        sudo usermod -aG docker $USER
+        sudo usermod -aG docker _USER
         sudo systemctl enable docker'
 
 # Step 2: Configure firewall rules (if not already configured)
@@ -59,7 +59,7 @@ steps:
     - ssh
     - Bar-App-VM
     - --zone=us-central1-a
-    - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/$USER/my-app'
+    - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/_USER/my-app'
 
 # Step 5: Run docker-compose on the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -68,7 +68,7 @@ steps:
     - ssh
     - Bar-App-VM
     - --zone=us-central1-a
-    - --command='cd /home/$USER/my-app && sudo docker-compose up -d'
+    - --command='cd /home/_USER/my-app && sudo docker-compose up -d'
 
 # Timeout for the entire build
 timeout: '1200s'
