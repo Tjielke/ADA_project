@@ -116,7 +116,7 @@
             "encoding": "json",
             "method": "GET",
             "host": [
-              "http://product_service_ct:5001/"
+              "http://product_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -142,7 +142,7 @@
             "encoding": "json",
             "method": "DELETE",
             "host": [
-              "http://product_service_ct:5001/"
+              "http://product_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -169,7 +169,7 @@
             "encoding": "json",
             "method": "POST",
             "host": [
-              "http://product_service_ct:5001/"
+              "http://product_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
@@ -196,7 +196,7 @@
             "encoding": "json",
             "method": "POST",
             "host": [
-              "http://product_service_ct:5001/"
+              "http://product_service_ct:5000/"
             ],
             "disable_host_sanitize": false
           }
