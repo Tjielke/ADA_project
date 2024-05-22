@@ -39,7 +39,8 @@ Create the following FaaS functions in your Google Cloud Workflows:
     - Add a Pub/Sub trigger with `inventory_update` as the topic name.
     - Refer to `FaaS_Functions/update-inventory.yaml` for the YAML code for this workflow.
 
-## 5. Adding a New Sale
+## 5. Filling the database
+Add users and products to the database using Insomnia with the right KeyCloak credentials.
+When adding a new sale using Insomnia with the correct Keycloak credentials, the Google Workflow should be triggered when the sale is accepted so that the BigQuery is updated with the new balance and stock.
 
-When adding a new sale using the Insomnia API call with the correct Keycloak configuration, the Google Workflow should be triggered when the sale is accepted.
 
