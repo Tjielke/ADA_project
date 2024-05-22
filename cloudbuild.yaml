@@ -85,4 +85,4 @@ steps:
 timeout: '1200s'
 
 # Specify the logs bucket
-logsBucket: 'gs://my-logs-bucket'
+logsBucket: 'gs://ada-project-logs-bucket'
