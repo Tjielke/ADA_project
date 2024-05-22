@@ -1,7 +1,7 @@
 import logging
 import os
 from flask import Flask, request
-from resources.sale import Bar_sale,Status
+from resources.sale import Bar_sale
 from db import Base, engine
 from flask import jsonify
 

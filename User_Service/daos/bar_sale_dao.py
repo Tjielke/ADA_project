@@ -2,7 +2,6 @@ from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 #from daos.association import product_in_sale
-from daos.status_dao import StatusDAO
 from daos.user_dao import UserDAO
 from daos.association import ProductInSale
 from db import Base
