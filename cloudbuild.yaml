@@ -32,7 +32,7 @@ steps:
     - --action=ALLOW
     - --rules=tcp:80
     - --source-ranges=0.0.0.0/0
-  ignoreExitStatus: true
+  allowFailure: true
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -46,7 +46,7 @@ steps:
     - --action=ALLOW
     - --rules=tcp:443
     - --source-ranges=0.0.0.0/0
-  ignoreExitStatus: true
+  allowFailure: true
 
 # Step 3: Copy files to Google Cloud Storage
 - name: 'gcr.io/cloud-builders/gsutil'
