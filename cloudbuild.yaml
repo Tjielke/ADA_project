@@ -5,7 +5,7 @@ steps:
     - compute
     - instances
     - create
-    - Bar-App-VM
+    - bar-app-vm
     - --zone=us-central1-a
     - --machine-type=e2-medium
     - --image-family=ubuntu-2204-lts
@@ -50,23 +50,23 @@ steps:
 
 # Step 3: Copy files to Google Cloud Storage
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', '-r', '.', 'gs://Bar-App-Bucket/my-app']
+  args: ['cp', '-r', '.', 'gs://bar-app-bucket/my-app']
 
 # Step 4: Copy files from GCS to the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
     - compute
     - ssh
-    - Bar-App-VM
+    - bar-app-vm
     - --zone=us-central1-a
-    - --command='gsutil cp -r gs://Bar-App-Bucket/my-app /home/_USER/my-app'
+    - --command='gsutil cp -r gs://bar-app-bucket/my-app /home/_USER/my-app'
 
 # Step 5: Run docker-compose on the new VM
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
     - compute
     - ssh
-    - Bar-App-VM
+    - bar-app-vm
     - --zone=us-central1-a
     - --command='cd /home/_USER/my-app && sudo docker-compose up -d'
 
@@ -74,4 +74,4 @@ steps:
 timeout: '1200s'
 
 # Specify the logs bucket
-logsBucket: 'gs://my-logs-bucket'
+logsBucket: 'gs://ada-project-logs-bucket'
