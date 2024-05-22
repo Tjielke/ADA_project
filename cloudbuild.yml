@@ -1,0 +1,55 @@
+steps:
+  # Step 1: Build the Bar_Sale_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/bar_service', './Bar_Sale_Service']
+
+  # Step 2: Build the Product_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/product_service', './Product_Service']
+
+  # Step 3: Build the User_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/user_service', './User_Service']
+
+  # Step 4: Push the Bar_Sale_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/bar_service']
+
+  # Step 5: Push the Product_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/product_service']
+
+  # Step 6: Push the User_Service container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/user_service']
+
+  # Step 7: Build and push the Keycloak container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/keycloak', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/keycloak']
+
+  # Step 8: Build and push the API Gateway container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/api_gateway', './krakend']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/api_gateway']
+
+  # Step 9: Deploy Bar_Sale_Service to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy bar-service --image gcr.io/$PROJECT_ID/bar_service --platform managed --region us-central1
+        gcloud run deploy product-service --image gcr.io/$PROJECT_ID/product_service --platform managed --region us-central1
+        gcloud run deploy user-service --image gcr.io/$PROJECT_ID/user_service --platform managed --region us-central1
+        gcloud run deploy keycloak --image gcr.io/$PROJECT_ID/keycloak --platform managed --region us-central1
+        gcloud run deploy api-gateway --image gcr.io/$PROJECT_ID/api_gateway --platform managed --region us-central1
+
+images:
+  - 'gcr.io/$PROJECT_ID/bar_service'
+  - 'gcr.io/$PROJECT_ID/product_service'
+  - 'gcr.io/$PROJECT_ID/user_service'
+  - 'gcr.io/$PROJECT_ID/keycloak'
+  - 'gcr.io/$PROJECT_ID/api_gateway'
