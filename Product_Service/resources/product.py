@@ -4,7 +4,9 @@ from flask import jsonify
 
 from daos.bar_sale_dao import Bar_sale_DAO
 from daos.product_dao import Product_DAO
+from daos.association import ProductInSale
 from daos.stock_dao import StockDAO
+from daos.user_dao import UserDAO
 
 from db import Session
 

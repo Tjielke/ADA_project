@@ -2,7 +2,6 @@ from datetime import datetime
 from flask import jsonify
 import json
 
-from constant import STATUS_CREATED
 from daos.bar_sale_dao import Bar_sale_DAO
 from daos.product_dao import Product_DAO
 from daos.association import ProductInSale
