@@ -2,9 +2,10 @@ from datetime import datetime
 
 from flask import jsonify
 
+from daos.bar_sale_dao import Bar_sale_DAO
 from daos.product_dao import Product_DAO
 from daos.stock_dao import StockDAO
-from daos.bar_sale_dao import Bar_sale_DAO
+
 from db import Session
 
 
