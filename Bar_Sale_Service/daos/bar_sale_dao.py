@@ -19,9 +19,8 @@ class Bar_sale_DAO(Base):
     seller = relationship(UserDAO.__name__,foreign_keys=[seller_id], backref=backref("sales", uselist=False))
     sales = relationship(ProductInSale.__name__, back_populates="sale")
     
-    def __init__(self,id, buyer_id, seller_id, sale_time, status):
+    def __init__(self,id, buyer_id, seller_id, sale_time):
         self.id = id
         self.buyer_id = buyer_id
         self.seller_id = seller_id
         self.sale_time = sale_time
-        self.status = status
