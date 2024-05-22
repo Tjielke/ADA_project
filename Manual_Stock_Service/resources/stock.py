@@ -11,7 +11,7 @@ class Stock:
     def update(d_id, new_stock):
         session = Session()
         Product = session.query(Product_DAO).filter(Product_DAO.id == int(d_id))[0]
-        Product.stock.stock = int(new_stock)
+        Product.stock.stock = int(new_stock['stock'])
         Product.stock.last_update = datetime.now()
         session.commit()
         return jsonify({'message': 'The stock position was updated'}), 200
