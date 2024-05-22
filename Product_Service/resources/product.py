@@ -34,7 +34,7 @@ class Product:
                 "name:": product.name,
                 "price": product.price,
                 "stock": {
-                    "stock": stock_obj.stock,
+                    "stock": stock_obj.stock_position,
                     "last_update": stock_obj.last_update.isoformat(),
                 }
             }

@@ -24,7 +24,7 @@ class Bar_sale:
         for product in body['product_ids']:
             query_product = session.query(Product_DAO).filter(Product_DAO.id == int(product['product_id']))
             stock_product = session.query(StockDAO).filter(StockDAO.id == int(product['product_id'])).first()
-            if stock_product['stock'] >= product['quantity']:
+            if stock_product['stock_position'] >= product['quantity']:
                 total_cost = total_cost + query_product['price']*int(product['quantity'])
             else:
                 session.close()
