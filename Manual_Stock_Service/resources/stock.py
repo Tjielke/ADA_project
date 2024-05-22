@@ -12,7 +12,9 @@ class Stock:
     def update(d_id, new_stock):
         session = Session()
         Stock = session.query(StockDAO).filter(StockDAO.id == int(d_id))[0]
+        Stock.id = d_id
         Stock.stock = str(new_stock['stock'])
+        Stock.create_date = datetime.now()
         Stock.last_update = datetime.now()
         session.commit()
         return jsonify({'message': 'The stock position was updated'}), 200
