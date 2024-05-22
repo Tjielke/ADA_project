@@ -39,18 +39,24 @@ services:
     build:
       context: ./Product_Service
     container_name: product_service_ct
+    depends_on:
+     - bar_service
     ports:
       - "5001:5000"
   user_service:
     build:
       context: ./User_Service
     container_name: user_service_ct
+    depends_on:
+     - bar_service
     ports:
       - "5002:5000"
   manual_stock_service:
     build:
       context: ./Manual_Stock_Service
     container_name: stock_service_ct
+    depends_on:
+     - bar_service
     ports:
       - "5003:5000"
 #settings to allow access to internetkeys
