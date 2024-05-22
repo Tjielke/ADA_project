@@ -25,7 +25,7 @@ Create the BigQuery database within the same project you just configured. Name t
 2. Clone the Git repository to the VM.
 3. Run the following command to start the services and create the topics:
    ```bash
-   sudo docker-compose up -d
+   sudo docker-compose up
 
 ## 4. Create Google Cloud Workflows Functions
 
@@ -46,4 +46,19 @@ Create the following FaaS functions in your Google Cloud Workflows:
 Add users and products to the database using Insomnia with the right KeyCloak credentials.
 When adding a new sale using Insomnia with the correct Keycloak credentials, the Google Workflow should be triggered when the sale is accepted so that the BigQuery is updated with the new balance and stock.
 
+## 6. Keycloak Credentials
 
+Use the following Keycloak credentials for authentication:
+
+- **URL:** `https://34.30.106.179:8443/realms/adaproject/protocol/openid-connect/token`
+- **Form Data:**
+  - `client_id`: `bar-api`
+  - `grant_type`: `password`
+  - `client_secret`: `GFwX8egs2UgYcD24KQFV2YncZzAcHWg9`
+  - `scope`: `openid`
+  - `username`: `board_member`
+  - `password`: `test2`
+
+## 7. Running multiple times
+
+If you want to run the code after the first time make sure to comment out the pub/sub create lines (11-14) in the file bar_sale_service.py, these topics have then already been created and the appliation will not run when trying to create them again.
