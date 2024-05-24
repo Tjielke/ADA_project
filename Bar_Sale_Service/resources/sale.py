@@ -64,11 +64,7 @@ class Bar_sale:
             text_out = {
                 "buyer_id:": sale.buyer_id,
                 "seller_id": sale.buyer_id,
-                "sale_time": sale.sale_time.isoformat(),
-                "status": {
-                    "status": status_obj.status,
-                    "last_update": status_obj.last_update.isoformat(),
-                }
+                "sale_time": sale.sale_time.isoformat()
             }
             session.close()
             return jsonify(text_out), 200
